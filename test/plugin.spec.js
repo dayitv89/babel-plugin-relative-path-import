@@ -250,11 +250,11 @@ describe('Babel Root Import - Plugin', () => {
 				BabelRootImportPlugin,
 				[
 					{
-						rootPathPrefix: '~',
+						rootPathPrefix: '@',
 						rootPathSuffix: 'some1/custom/root'
 					},
 					{
-						rootPathPrefix: '@',
+						rootPathPrefix: '@some2',
 						rootPathSuffix: '../../some2/custom/../custom/root'
 					}
 				]
@@ -262,18 +262,18 @@ describe('Babel Root Import - Plugin', () => {
 		];
 
 		const targetRequire1 = slash(`/some1/custom/root/some/example.js`);
-		const transformedImport1 = babel.transform("import SomeExample from '~/some/example.js';", {
+		const transformedImport1 = babel.transform("import SomeExample from '@/some/example.js';", {
 			plugins
 		});
-		const transformedRequire1 = babel.transform("var SomeExample = require('~/some/example.js');", {
+		const transformedRequire1 = babel.transform("var SomeExample = require('@/some/example.js');", {
 			plugins
 		});
 
 		const targetRequire2 = slash(`../../some2/custom/root/some/example.js`);
-		const transformedImport2 = babel.transform("import SomeExample from '@/some/example.js';", {
+		const transformedImport2 = babel.transform("import SomeExample from '@some2/some/example.js';", {
 			plugins
 		});
-		const transformedRequire2 = babel.transform("var SomeExample = require('@/some/example.js');", {
+		const transformedRequire2 = babel.transform("var SomeExample = require('@some2/some/example.js');", {
 			plugins
 		});
 
