@@ -31,7 +31,7 @@ Add a `.babelrc` file and write:
 {
   "plugins": [
 		[
-			"babel-plugin-root-import",
+			"babel-plugin-relative-path-import",
 			[
 				{
 					"rootPathPrefix": "~", // `@` is the default so you can remove this if you want
@@ -69,7 +69,7 @@ const OtherExample = require('@some/example.js');
 
 or pass the plugin with the plugins-flag on CLI
 ```
-babel-node myfile.js --plugins babel-plugin-root-import
+babel-node myfile.js --plugins babel-plugin-relative-path-import
 ```
 
 
@@ -78,7 +78,7 @@ If you use [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-imp
 
 ```json
     "import/resolver": {
-      "babel-plugin-root-import": {}
+      "babel-plugin-relative-path-import": {}
     }
 ```
 
