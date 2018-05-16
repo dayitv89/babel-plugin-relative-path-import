@@ -10,14 +10,7 @@ export const hasRootPathPrefixInString = (importPath, rootPathPrefix = '@') => {
 		if (importPath.indexOf('/') !== -1) {
 			containsRootPathPrefix = importPath.substring(0, importPath.indexOf('/')) === rootPathPrefix;
 		} else {
-			if (importPath.startsWith(rootPathPrefix)) {
-				containsRootPathPrefix = true;
-			}
-
-			const firstTwoCharactersOfString = importPath.substring(0, 2);
-			if (firstTwoCharactersOfString === `${rootPathPrefix}/`) {
-				containsRootPathPrefix = true;
-			}
+			containsRootPathPrefix = importPath === rootPathPrefix;
 		}
 	}
 

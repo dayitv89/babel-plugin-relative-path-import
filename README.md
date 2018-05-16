@@ -2,6 +2,7 @@
 Babel plugin to add the opportunity to use `import` and `require` with root based paths.<br>
 [![Build Status](https://travis-ci.org/dayitv89/babel-plugin-relative-path-import.svg?branch=master)](https://travis-ci.org/dayitv89/babel-plugin-relative-path-import)
 [![https://github.com/dayitv89/babel-plugin-relative-path-import](https://img.shields.io/npm/dm/babel-plugin-relative-path-import.svg)](https://www.npmjs.com/package/babel-plugin-relative-path-import)
+![](https://img.shields.io/badge/Stable-v1.0.5-green.svg?style=flat)
 
 ## Example
 ```javascript
