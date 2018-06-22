@@ -101,7 +101,7 @@ Sometimes tooling might not be up to scratch, meaning you lose features such as 
 ### Distributing package?
 While distributing package somewhere, `.babelrc` file has problem to resolve the path. To fix that you should run `postinstall` inside your package.json.
 
-```javascript
+```js
 // BabelPostScript.js
 (function() {
 	const path = process.cwd();
@@ -129,7 +129,7 @@ While distributing package somewhere, `.babelrc` file has problem to resolve the
 ```
 
 Run this script using `postinstall` inside `package.json`
-```
+```js
 {
 	...
 	"scripts": {
