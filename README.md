@@ -98,5 +98,48 @@ Webpack delivers a similar feature, if you just want to prevent end-less import 
 ### Want to revert back to relative paths?
 Sometimes tooling might not be up to scratch, meaning you lose features such as navigation in your IDE. In such cases you might want to revert back to using relative paths again. If you have a significant amount of files, it might be worth looking into [tooling](https://www.npmjs.com/package/convert-root-import) to help you with the conversion.
 
+### Distributing package?
+While distributing package somewhere, `.babelrc` file has problem to resolve the path. To fix that you should run `postinstall` inside your package.json.
+
+```javascript
+// BabelPostScript.js
+(function() {
+	const path = process.cwd();
+	if (path.includes('node_modules')) {
+		const dataPrefix = path.substring(path.indexOf('node_modules')) + '/';
+		const fs = require('fs');
+		const config = {
+			fileName: './.babelrc',
+			fileType: 'utf8',
+			dataPrefix
+		};
+
+		fs.readFile(config.fileName, config.fileType, function(err, data) {
+			const bableDefault = JSON.parse(data);
+			bableDefault.plugins[0][1].forEach(i => {
+				i.rootPathSuffix = `${config.dataPrefix}${i.rootPathSuffix}`;
+			});
+			fs.writeFile(config.fileName, JSON.stringify(bableDefault, null, 2), function(err) {
+				if (err) throw err;
+				console.log('BabelPostScript for babel-plugin-relative-path-import run: complete');
+			});
+		});
+	}
+})();
+```
+
+Run this script using `postinstall` inside `package.json`
+```
+{
+	...
+	"scripts": {
+		...
+		"postinstall": "node ./BabelPostScript.js"
+	},
+	...
+}
+```
+
+
 ### Credit
 Improved by [Gaurav D. Sharma](https://github.com/dayitv89), inspired & originally taken from [entwicklerstube](https://github.com/entwicklerstube/babel-plugin-root-import)
