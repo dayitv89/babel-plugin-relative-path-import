@@ -1,17 +1,21 @@
 {
 	"name": "babel-plugin-relative-path-import",
-	"version": "1.0.5",
+	"version": "2.0.0",
 	"description": "Babel Plugin to enable relative root-import",
 	"author": "Gaurav D. Sharma <er.gauravds@gmail.com>",
 	"license": "MIT",
 	"main": "index.js",
-	"files": ["index.js", "build"],
+	"files": [
+		"index.js",
+		"build"
+	],
 	"repository": "dayitv89/babel-plugin-relative-path-import",
 	"scripts": {
 		"test": "mocha test/*.spec.js --require config/mocha.js --compilers js:babel-core/register",
 		"test-watch": "npm test -- --watch",
 		"lint-js": "eslint plugin",
-		"compile": "babel -d build/ plugin/"
+		"compile": "babel -d build/ plugin/",
+		"prepublish": "npm run test && npm run compile"
 	},
 	"dependencies": {
 		"slash": "^1.0.0"
