@@ -4,11 +4,11 @@ Babel plugin to add the opportunity to use `import` and `require` with root base
 [![Build Status](https://travis-ci.org/dayitv89/babel-plugin-relative-path-import.svg?branch=master)](https://travis-ci.org/dayitv89/babel-plugin-relative-path-import)
 [![Build Status](https://app.bitrise.io/app/233ca8f676ebaf7d/status.svg?token=3ZTN8OKoFWVzeHy085tG3A&branch=master)](https://app.bitrise.io/app/233ca8f676ebaf7d)
 [![https://github.com/dayitv89/babel-plugin-relative-path-import](https://img.shields.io/npm/dm/babel-plugin-relative-path-import.svg)](https://www.npmjs.com/package/babel-plugin-relative-path-import)
-![](https://img.shields.io/badge/Stable-v2.0.0-green.svg?style=flat)
+![](https://img.shields.io/badge/Stable-v2.0.1-green.svg?style=flat)
 
 ## Versions:
 
-- Babel 7 supports : `v2.0.0`
+- Babel 7 supports : `v2.0.1`
 - Previous stable version: `v1.0.5`
 
 ## Example
@@ -134,7 +134,7 @@ While distributing package somewhere, `.babelrc` file has problem to resolve the
 
 		fs.readFile(config.fileName, config.fileType, function(err, data) {
 			const bableDefault = JSON.parse(data);
-			bableDefault.plugins[0][1].forEach(i => {
+			bableDefault.plugins[0][1].paths.forEach(i => {
 				i.rootPathSuffix = `${config.dataPrefix}${i.rootPathSuffix}`;
 			});
 			fs.writeFile(config.fileName, JSON.stringify(bableDefault, null, 2), function(err) {

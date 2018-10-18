@@ -1,6 +1,6 @@
 {
 	"name": "babel-plugin-relative-path-import",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Babel Plugin to enable relative root-import",
 	"author": "Gaurav D. Sharma <er.gauravds@gmail.com>",
 	"license": "MIT",
