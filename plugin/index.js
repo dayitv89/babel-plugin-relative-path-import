@@ -1,3 +1,5 @@
+import slash from 'slash';
+
 import { hasRootPathPrefixInString, transformRelativeToRootPath } from './helper';
 
 const replacePrefix = (path, opts = [], sourceFile) => {
@@ -22,7 +24,7 @@ const replacePrefix = (path, opts = [], sourceFile) => {
 		}
 
 		if (hasRootPathPrefixInString(path, rootPathPrefix)) {
-			return transformRelativeToRootPath(path, rootPathSuffix, rootPathPrefix, sourceFile);
+			return transformRelativeToRootPath(path, rootPathSuffix, rootPathPrefix, slash(sourceFile));
 		}
 	}
 
@@ -50,7 +52,7 @@ const traverseExpression = (t, arg) => {
 export default ({ types: t }) => {
 	const visitor = {
 		CallExpression(path, state) {
-			if (path.node.callee.name !== 'require') {
+			if (!(path.node.callee.name === 'require' || t.isImport(path.node.callee))) {
 				return;
 			}
 
